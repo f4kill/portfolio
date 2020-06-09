@@ -1,11 +1,11 @@
-name: Publish Website
+name: Stage Website
 
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ dev ]
 
 jobs:
   Build-n-Deploy:
@@ -20,7 +20,7 @@ jobs:
     - name: Build
       run: |
         npm install
-        npm run build
+        npm run staging
         git reset --hard
     # - name: Test
     # - run: npm test
@@ -30,7 +30,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
       with:
         # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
-        ftp-server: ${{ secrets.FTP_SERVER }}/www
+        ftp-server: ${{ secrets.FTP_SERVER }}/staging
         # FTP account username
         ftp-username: ${{ secrets.FTP_USERNAME }}
         # FTP account password
