@@ -1,4 +1,4 @@
-name: Publish Website
+name: Stage Website
 
 # events but only for the master branch
 on:
